@@ -2,7 +2,7 @@
   "type": "module",
   "name": "ip-address-change-notifier",
   "version": "0.0.1",
-  "description": "Notifies change of public IP address via Pushover",
+  "description": "Notifies change of public IP address via Pushover.",
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config index.js",
