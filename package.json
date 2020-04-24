@@ -8,5 +8,10 @@
   },
   "author": "yukidaruman (https://github.com/yukidaruma)",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "public-ip": "^4.0.1",
+    "pushover-notifications": "^1.2.2"
+  }
 }
