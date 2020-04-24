@@ -1,3 +1,12 @@
+#
+# Application specific files
+#
+.env
+last-ip-address
+
+#
+# Node.js specific files
+#
 node_modules/
 
 # Logs
