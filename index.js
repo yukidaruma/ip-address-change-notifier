@@ -13,7 +13,7 @@ const push = new Pushover({
 const sendNotification = (message) => new Promise((resolve, reject) => {
   push.send(
     {
-      title: 'New IP Address',
+      title: process.env['NEW_IP_ADDRESS_NOTIFICATION_TITLE'],
       message,
     },
     (err) => {
