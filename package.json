@@ -1,0 +1,12 @@
+{
+  "name": "ip-address-change-notifier",
+  "version": "0.0.1",
+  "description": "Notifies change of public IP address via Pushover",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yukidaruman (https://github.com/yukidaruma)",
+  "license": "MIT",
+  "private": true
+}
