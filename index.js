@@ -38,8 +38,17 @@ let lastIpAddress = (() => {
 })();
 
 const loop = async () => {
+  let ipAddress;
+
   console.log('Checking IP address.');
-  const ipAddress = await PublicIp.v4();
+
+  try {
+    ipAddress = await PublicIp.v4();
+  } catch (_) {
+    console.error('Failed to resolve IP address.');
+    return;
+  }
+
   console.log(`Current IP address is ${ipAddress}.`);
 
   if (lastIpAddress === ipAddress) {
