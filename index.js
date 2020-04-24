@@ -1,4 +1,5 @@
 import fs from 'fs';
+import retry from 'async-retry';
 import PublicIp from 'public-ip';
 import Pushover from 'pushover-notifications';
 
@@ -26,6 +27,8 @@ const sendNotification = (message) => new Promise((resolve, reject) => {
   );
 });
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 let lastIpAddress = (() => {
   try {
     return fs.readFileSync(SAVE_FILE, 'utf-8');
@@ -47,13 +50,14 @@ const loop = async () => {
   if (lastIpAddress) {
     console.log('IP address has been changed. Sending notification.');
 
-    try {
-      await sendNotification(ipAddress);
-      console.log('Successfully sent notification.');
-    } catch (e) {
-      console.error('Failed to send notification:');
-      console.error(e);
-    }
+    await retry(
+      () => sendNotification(ipAddress),
+      {
+        forever: true,
+        onRetry: () => { console.log('Failed to send notification. Retrying.') },
+       },
+    );
+    console.log('Successfully sent notification.');
 
     fs.writeFileSync(SAVE_FILE, ipAddress);
   }
@@ -61,6 +65,9 @@ const loop = async () => {
   lastIpAddress = ipAddress;
 };
 
-console.log(`Last IP address was: ${lastIpAddress}.`);
-loop();
-setInterval(loop, ONE_MINUTE);
+(async () => {
+  while (true) {
+    await loop();
+    await sleep(ONE_MINUTE);
+  }
+})();
