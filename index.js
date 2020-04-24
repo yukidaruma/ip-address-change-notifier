@@ -67,10 +67,9 @@ const loop = async () => {
        },
     );
     console.log('Successfully sent notification.');
-
-    fs.writeFileSync(SAVE_FILE, ipAddress);
   }
 
+  fs.writeFileSync(SAVE_FILE, ipAddress);
   lastIpAddress = ipAddress;
 };
 
