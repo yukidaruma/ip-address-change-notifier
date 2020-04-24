@@ -10,6 +10,10 @@
   },
   "author": "yukidaruman (https://github.com/yukidaruma)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yukidaruma/ip-address-change-notifier"
+  },
   "private": true,
   "dependencies": {
     "dotenv": "^8.2.0",
