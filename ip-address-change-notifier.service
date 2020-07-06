@@ -1,0 +1,16 @@
+[Unit]
+Description=IP Address Change Notifier
+After=syslog.target network.target
+
+[Service]
+# You may need to edit these values locally.
+User=pi
+ExecStart=/usr/local/bin/npm start
+WorkingDirectory=/home/pi/ip-address-change-notifier
+
+Type=simple
+KillMode=control-group
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
